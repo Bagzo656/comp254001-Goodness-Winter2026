@@ -161,6 +161,31 @@ public class SinglyLinkedList<E> implements Cloneable {
     return answer;
   }
 
+  public void swapNodes(Node<E> node1, Node<E> node2) {
+    if (node1 == node2 || node1 == null || node2 == null) return;
+    Node<E> prev1 = null, prev2 = null, walk = head;
+    while (walk != null && (prev1 == null || prev2 == null)) {
+      if (walk.getNext() == node1) prev1 = walk;
+      if (walk.getNext() == node2) prev2 = walk;
+      walk = walk.getNext();
+    }
+    if (prev1 != null) prev1.setNext(node2); else head = node2;
+    if (prev2 != null) prev2.setNext(node1); else head = node1;
+    Node<E> temp = node1.getNext();
+    node1.setNext(node2.getNext());
+    node2.setNext(temp);
+    if (tail == node1) tail = node2; else if (tail == node2) tail = node1;
+  }
+
+  public Node<E> findNode(E val) {
+    Node<E> curr = head;
+    while (curr != null) {
+      if (curr.getElement().equals(val)) return curr;
+      curr = curr.getNext();
+    }
+    return null;
+  }
+
   @SuppressWarnings({"unchecked"})
   public boolean equals(Object o) {
     if (o == null) return false;
