@@ -161,6 +161,11 @@ public class SinglyLinkedList<E> implements Cloneable {
     return answer;
   }
 
+  /**
+   * Exercise 2: Swaps two nodes node1 and node2 (not just their content).
+   * Logic: Finds the predecessors of both nodes to re-link the chain.
+   */
+
   public void swapNodes(Node<E> node1, Node<E> node2) {
     if (node1 == node2 || node1 == null || node2 == null) return;
     Node<E> prev1 = null, prev2 = null, walk = head;
