@@ -251,17 +251,24 @@ public class SinglyLinkedList<E> implements Cloneable {
     return sb.toString();
   }
   //main method
-  public static void main(String[] args)
-  {
-	  
-	  SinglyLinkedList<String> list = new SinglyLinkedList<String>();
-	  list.addFirst("MSP");
-	  list.addLast("ATL");
-	  list.addLast("BOS");
-	  //
-	  list.addFirst("LAX");
-	  System.out.println(list);
-	  //
+  public static void main(String[] args) {
+      SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+      list.addLast(10);
+      list.addLast(20);
+      list.addLast(30);
+      list.addLast(40);
+      
+      System.out.println("\nExercise 2 Test:");
+      System.out.println("Original List: " + list);
+
+      // Get references to nodes containing 20 and 40
+      SinglyLinkedList.Node<Integer> node1 = list.findNode(20);
+      SinglyLinkedList.Node<Integer> node2 = list.findNode(40);
+      
+      // Call your new swapNodes method
+      list.swapNodes(node1, node2);
+      
+      System.out.println("After swapping 20 and 40: " + list);
   }
   
 }

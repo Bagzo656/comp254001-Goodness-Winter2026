@@ -209,22 +209,27 @@ public class CircularlyLinkedList<E> {
   }
   
 //main method
-  public static void main(String[] args)
-  {
-	  
-	  //(LAX, MSP, ATL, BOS)
-	  CircularlyLinkedList<String> circularList = new CircularlyLinkedList<String>();
-	  circularList.addFirst("LAX");
-	  circularList.addLast("MSP");
-	  circularList.addLast("ATL");
-	  circularList.addLast("BOS");
-	  //
-	  System.out.println(circularList);
-	  circularList.removeFirst();
-	  System.out.println(circularList);
-	  circularList.rotate();
-	  System.out.println(circularList);
+  public static void main(String[] args) {
+      try {
+          CircularlyLinkedList<String> list = new CircularlyLinkedList<>();
+          list.addLast("First");
+          list.addLast("Middle");
+          list.addLast("Last");
 
-	  //
+          System.out.println("\nExercise 3 Test:");
+          System.out.println("Original Circular List: " + list);
+
+          // Call your new clone method
+          CircularlyLinkedList<String> clonedList = list.clone();
+          System.out.println("Cloned Circular List: " + clonedList);
+
+          // Verify deep clone: Add to original, clone should NOT change
+          list.addFirst("New-Start");
+          System.out.println("Original after modification: " + list);
+          System.out.println("Clone (should NOT have New-Start): " + clonedList);
+
+      } catch (CloneNotSupportedException e) {
+          System.err.println("Cloning failed: " + e.getMessage());
+      }
   }
 }

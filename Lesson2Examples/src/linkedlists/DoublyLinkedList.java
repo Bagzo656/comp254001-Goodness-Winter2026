@@ -249,20 +249,28 @@ public class DoublyLinkedList<E> {
     other.trailer.setPrev(other.header);
     other.size = 0;
   }
-  
+
 //main method
-  public static void main(String[] args)
-  {
-	  //create and populate a doubly linked list
-	  DoublyLinkedList<String> list = new DoublyLinkedList<String>();
-	  list.addFirst("MSP");
-	  list.addLast("ATL");
-	  list.addLast("BOS");
-	  //
-	  list.addFirst("LAX");
-	  
-	  System.out.println(list);
-	  System.out.println(list.first());
-	  //
+  public static void main(String[] args) {
+      // Create first list L
+      DoublyLinkedList<String> L = new DoublyLinkedList<>();
+      L.addLast("A");
+      L.addLast("B");
+      
+      // Create second list M
+      DoublyLinkedList<String> M = new DoublyLinkedList<>();
+      M.addLast("C");
+      M.addLast("D");
+
+      System.out.println("Exercise 1 Test:");
+      System.out.println("List L: " + L);
+      System.out.println("List M: " + M);
+      
+      // Call your new concat method
+      L.concat(M);
+      
+      System.out.println("After L.concat(M): " + L);
+      System.out.println("List M (should be empty): " + M);
+      System.out.println("L Size (should be 4): " + L.size());
   }
 } //----------- end of DoublyLinkedList class -----------
