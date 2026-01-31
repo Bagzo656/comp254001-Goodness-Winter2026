@@ -180,6 +180,33 @@ public class CircularlyLinkedList<E> {
     sb.append(")");
     return sb.toString();
   }
+
+  /**
+   * Exercise 3: Creates a deep clone of the circularly linked list.
+   * Logic: Manually replicates the chain and closes the circle.
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  public CircularlyLinkedList<E> clone() throws CloneNotSupportedException {
+    CircularlyLinkedList<E> other = (CircularlyLinkedList<E>) super.clone();
+    if (size > 0) {
+      // Create the head of the new list (the node after the tail)
+      other.tail = new Node<>(tail.getNext().getElement(), null);
+      Node<E> currentNew = other.tail;
+      Node<E> currentOld = tail.getNext().getNext(); // second node
+
+      for (int i = 1; i < size; i++) {
+        Node<E> newest = new Node<>(currentOld.getElement(), null);
+        currentNew.setNext(newest);
+        currentNew = newest;
+        currentOld = currentOld.getNext();
+      }
+      // Re-link the end to the start to maintain circularity
+      currentNew.setNext(other.tail);
+      other.tail = currentNew; // The last node created is the tail
+    }
+    return other;
+  }
   
 //main method
   public static void main(String[] args)
