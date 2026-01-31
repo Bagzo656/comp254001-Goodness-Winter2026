@@ -223,6 +223,33 @@ public class DoublyLinkedList<E> {
     sb.append(")");
     return sb.toString();
   }
+
+  /**
+   * Exercise 1: Concatenates two doubly linked lists into one.
+   * Logic: Connects the last node of 'this' list directly to the first node
+   * of the 'other' list, bypassing the internal sentinels.
+   */
+  public void concat(DoublyLinkedList<E> other) {
+    if (other.isEmpty()) return; // Nothing to add
+
+    // Identify the connection points
+    Node<E> tailOfThis = this.trailer.getPrev();  // last actual node of L
+    Node<E> headOfOther = other.header.getNext(); // first actual node of M
+
+    // Bridge the two lists
+    tailOfThis.setNext(headOfOther);
+    headOfOther.setPrev(tailOfThis);
+
+    // Update the end of the combined list
+    this.trailer = other.trailer;
+    this.size += other.size();
+
+    // Reset the second list so it's technically empty
+    other.header.setNext(other.trailer);
+    other.trailer.setPrev(other.header);
+    other.size = 0;
+  }
+  
 //main method
   public static void main(String[] args)
   {
